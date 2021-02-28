@@ -1,22 +1,13 @@
-import type {
-  AbilityResponse,
-  LocalizedName,
-  PokemonResponse,
-  PokemonSpeciesResponse,
-  TypeResponse
-} from "../interfaces/pokemonApi";
-import type { Pokemon } from "interfaces/pokemon";
-
-function getEnglishName(names: LocalizedName[]) {
+function getEnglishName(names) {
   return names.find((item) => item.language.name === "en")?.name || "Unknown";
 }
 
 export function parsePokemon(
-  pokemonResponse: PokemonResponse,
-  pokemonSpeciesResponse: PokemonSpeciesResponse,
-  typeResponses: TypeResponse[],
-  abilityResponses: AbilityResponse[]
-): Pokemon {
+  pokemonResponse,
+  pokemonSpeciesResponse,
+  typeResponses,
+  abilityResponses
+) {
   return {
     id: pokemonResponse.id,
     slug: pokemonResponse.name,

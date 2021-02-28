@@ -1,27 +1,12 @@
 /* eslint-disable no-undef */
 import querystring from "querystring";
-import {
-  AbilityResponse,
-  PokemonResponse,
-  PokemonSpeciesResponse,
-  ResourceList,
-  TypeResponse
-} from "./interfaces/pokemonApi";
-import type { Pokemon, PaginableList } from "interfaces/pokemon";
 import { parsePokemon } from "./parsers/pokemon";
 
 const baseUrl = "https://pokeapi.co/api/v2/";
 
-interface Cache {
-  [url: string]: any;
-}
+const cache = {};
 
-const cache: Cache = {};
-
-function getFullUrl(
-  path: string,
-  parameters?: string | Record<string, string>
-) {
+function getFullUrl(path, parameters) {
   let parameterString = "";
   if (typeof parameters === "string") {
     parameterString = parameters;
@@ -31,7 +16,7 @@ function getFullUrl(
   return `${baseUrl}${path}${parameterString ? `?${parameterString}` : ""}`;
 }
 
-async function fetchWithCache(url: string, options?: RequestInit) {
+async function fetchWithCache(url, options) {
   const cachedResponse = cache[url];
 
   if (cachedResponse) {
@@ -54,11 +39,7 @@ async function fetchWithCache(url: string, options?: RequestInit) {
   return promise;
 }
 
-async function fetchPokeApi<T>(
-  pathOrUrl: string,
-  parameters?: string | Record<string, string>,
-  options?: RequestInit
-): Promise<T> {
+async function fetchPokeApi(pathOrUrl, parameters, options) {
   let url;
   if (pathOrUrl.startsWith("http")) {
     url = pathOrUrl;
@@ -66,16 +47,12 @@ async function fetchPokeApi<T>(
     url = getFullUrl(pathOrUrl, parameters);
   }
 
-  const response = (await fetchWithCache(url, options)) as T;
+  const response = await fetchWithCache(url, options);
   return response;
 }
 
-export async function fetchPokemonSpeciesByURL(
-  pathOrUrl: string
-): Promise<Pokemon> {
-  const pokemonSpeciesResponse = await fetchPokeApi<PokemonSpeciesResponse>(
-    pathOrUrl
-  );
+export async function fetchPokemonSpeciesByURL(pathOrUrl) {
+  const pokemonSpeciesResponse = await fetchPokeApi(pathOrUrl);
   const { varieties } = pokemonSpeciesResponse;
   const defaultPokemonResource =
     varieties.find((item) => item.is_default) || varieties[0];
@@ -87,17 +64,13 @@ export async function fetchPokemonSpeciesByURL(
   }
 
   const url = defaultPokemonResource.pokemon.url;
-  const pokemonResponse = await fetchPokeApi<PokemonResponse>(url);
+  const pokemonResponse = await fetchPokeApi(url);
 
   const typesPromise = Promise.all(
-    pokemonResponse.types.map((item) =>
-      fetchPokeApi<TypeResponse>(item.type.url)
-    )
+    pokemonResponse.types.map((item) => fetchPokeApi(item.type.url))
   );
   const abilitiesPromise = Promise.all(
-    pokemonResponse.abilities.map((item) =>
-      fetchPokeApi<AbilityResponse>(item.ability.url)
-    )
+    pokemonResponse.abilities.map((item) => fetchPokeApi(item.ability.url))
   );
 
   const [typeResponses, abilityResponses] = await Promise.all([
@@ -113,17 +86,12 @@ export async function fetchPokemonSpeciesByURL(
   );
 }
 
-export async function fetchPokemonSpeciesByID(
-  id: string | number
-): Promise<Pokemon> {
+export async function fetchPokemonSpeciesByID(id) {
   return fetchPokemonSpeciesByURL(`pokemon-species/${id}`);
 }
 
-export async function fetchPokemonList(
-  offset: number = 0,
-  limit: number = 9
-): Promise<PaginableList<Pokemon>> {
-  const response = await fetchPokeApi<ResourceList>("pokemon-species", {
+export async function fetchPokemonList(offset, limit) {
+  const response = await fetchPokeApi("pokemon-species", {
     limit: String(limit),
     offset: String(offset)
   });

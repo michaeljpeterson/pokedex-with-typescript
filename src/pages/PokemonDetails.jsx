@@ -4,14 +4,12 @@ import { useParams } from "react-router-dom";
 import { fetchPokemonSpeciesByID } from "support/api/pokemonAPI";
 import { useAsync } from "hooks/async";
 
-import type { Pokemon } from "interfaces/pokemon";
-
 import styles from "./PokemonDetails.module.css";
 
 function PokemonDetails() {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams();
 
-  const { state, run } = useAsync<Pokemon>();
+  const { state, run } = useAsync();
 
   React.useEffect(() => {
     run(fetchPokemonSpeciesByID(id));

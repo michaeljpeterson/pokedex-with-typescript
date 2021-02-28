@@ -1,16 +1,9 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
-import type { Pokemon } from "interfaces/pokemon";
-
 import styles from "./PokemonCard.module.css";
 
-type Props = {
-  pokemon: Pokemon;
-  className?: string;
-};
-
-function PokemonCard({ pokemon, className }: Props) {
+function PokemonCard({ pokemon, className }) {
   return (
     <Link
       to={`/pokemon/${pokemon.id}`}

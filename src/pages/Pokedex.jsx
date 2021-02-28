@@ -4,12 +4,10 @@ import { useAsync } from "hooks/async";
 import { fetchPokemonList } from "support/api/pokemonAPI";
 import PokemonCard from "components/PokemonCard";
 
-import type { PaginableList, Pokemon } from "interfaces/pokemon";
-
 import styles from "./Pokedex.module.css";
 
 function Pokedex() {
-  const { state, run } = useAsync<PaginableList<Pokemon>>();
+  const { state, run } = useAsync();
 
   React.useEffect(() => {
     run(fetchPokemonList());

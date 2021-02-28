@@ -1,2 +1,3 @@
-# pokedex-with-typescript
+# pokedex-without-typescript
+
 Created with CodeSandbox
