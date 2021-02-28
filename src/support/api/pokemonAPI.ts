@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import querystring from "querystring";
-import {
+import type {
   AbilityResponse,
   PokemonResponse,
   PokemonSpeciesResponse,
