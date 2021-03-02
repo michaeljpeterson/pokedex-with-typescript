@@ -75,7 +75,7 @@ export async function fetchPokemonSpeciesByURL(pathOrUrl) {
 
   const [typeResponses, abilityResponses] = await Promise.all([
     typesPromise,
-    abilitiesPromise
+    abilitiesPromise,
   ]);
 
   return parsePokemon(
@@ -93,7 +93,7 @@ export async function fetchPokemonSpeciesByID(id) {
 export async function fetchPokemonList(offset, limit) {
   const response = await fetchPokeApi("pokemon-species", {
     limit: String(limit),
-    offset: String(offset)
+    offset: String(offset),
   });
   const pokemon = await Promise.all(
     response.results.map((item) => fetchPokemonSpeciesByURL(item.url))
@@ -103,6 +103,6 @@ export async function fetchPokemonList(offset, limit) {
     count: response.count,
     next: response.next,
     previous: response.previous,
-    results: pokemon
+    results: pokemon,
   };
 }
