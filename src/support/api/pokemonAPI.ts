@@ -66,7 +66,7 @@ async function fetchPokeApi<T>(
     url = getFullUrl(pathOrUrl, parameters);
   }
 
-  const response = (await fetchWithCache(url, options)) as T;
+  const response = (await fetchWithCache(url, options));
   return response;
 }
 
