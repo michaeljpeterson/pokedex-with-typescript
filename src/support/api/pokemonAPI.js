@@ -90,7 +90,7 @@ export async function fetchPokemonSpeciesByID(id) {
   return fetchPokemonSpeciesByURL(`pokemon-species/${id}`);
 }
 
-export async function fetchPokemonList(offset, limit) {
+export async function fetchPokemonList(offset = 0, limit = 9) {
   const response = await fetchPokeApi("pokemon-species", {
     limit: String(limit),
     offset: String(offset),
