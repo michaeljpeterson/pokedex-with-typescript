@@ -17,7 +17,7 @@ export function useAsync() {
     {
       status: "idle",
       data: null,
-      error: null
+      error: null,
     }
   );
 

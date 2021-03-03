@@ -13,11 +13,11 @@ export function parsePokemon(
     slug: pokemonResponse.name,
     name: getEnglishName(pokemonSpeciesResponse.names),
     types: typeResponses.map((type) => ({
-      name: getEnglishName(type.names)
+      name: getEnglishName(type.names),
     })),
     abilities: abilityResponses.map((ability) => ({
-      name: getEnglishName(ability.names)
+      name: getEnglishName(ability.names),
     })),
-    imageURL: pokemonResponse.sprites.other["official-artwork"].front_default
+    artwork: pokemonResponse.sprites.other["official-artwork"].front_default,
   };
 }

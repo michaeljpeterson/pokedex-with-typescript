@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
+import { getImageURLFromPokemon } from "support/helpers/pokemon";
+
 import styles from "./PokemonCard.module.css";
 
 function PokemonCard({ pokemon, className }) {
@@ -10,7 +12,11 @@ function PokemonCard({ pokemon, className }) {
       className={classNames(styles.box, className)}
     >
       <div>{pokemon.name}</div>
-      <img alt={pokemon.name} className={styles.image} src={pokemon.imageURL} />
+      <img
+        alt={pokemon.name}
+        className={styles.image}
+        src={getImageURLFromPokemon(pokemon)}
+      />
     </Link>
   );
 }

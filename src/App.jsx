@@ -14,7 +14,7 @@ export default function App() {
           <NavLink
             to="/"
             activeStyle={{
-              display: "none"
+              display: "none",
             }}
             exact
           >
