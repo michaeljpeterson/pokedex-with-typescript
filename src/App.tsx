@@ -1,9 +1,9 @@
-import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
-import Pokedex from "pages/Pokedex";
-import PokemonDetails from "pages/PokemonDetails";
+import Pokedex from 'pages/Pokedex';
+import PokemonDetails from 'pages/PokemonDetails';
 
-import "./styles.css";
+import './styles.css';
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
           <NavLink
             to="/"
             activeStyle={{
-              display: "none"
+              display: 'none',
             }}
             exact
           >

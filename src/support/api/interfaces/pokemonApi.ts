@@ -14,7 +14,7 @@ export interface PokemonResponse {
   id: number;
   sprites: {
     other: {
-      "official-artwork": {
+      'official-artwork': {
         front_default: string;
       };
     };
