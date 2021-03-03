@@ -10,6 +10,10 @@ type Props = {
   className?: string;
 };
 
+function getImageURLFromPokemon(pokemon: Pokemon) {
+  return pokemon.artwork
+}
+
 function PokemonCard({ pokemon, className }: Props) {
   return (
     <Link
@@ -17,7 +21,7 @@ function PokemonCard({ pokemon, className }: Props) {
       className={classNames(styles.box, className)}
     >
       <div>{pokemon.name}</div>
-      <img alt={pokemon.name} className={styles.image} src={pokemon.imageURL} />
+      <img alt={pokemon.name} className={styles.image} src={getImageURLFromPokemon(pokemon)} />
     </Link>
   );
 }

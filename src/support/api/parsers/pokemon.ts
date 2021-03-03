@@ -27,6 +27,6 @@ export function parsePokemon(
     abilities: abilityResponses.map((ability) => ({
       name: getEnglishName(ability.names)
     })),
-    imageURL: pokemonResponse.sprites.other["official-artwork"].front_default
+    artwork: pokemonResponse.sprites.other["official-artwork"].front_default
   };
 }

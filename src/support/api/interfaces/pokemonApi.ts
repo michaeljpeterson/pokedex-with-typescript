@@ -12,6 +12,13 @@ export interface PokemonResponse {
   species: NamedAPIResource;
   name: string;
   id: number;
+  sprites: {
+    other: {
+      "official-artwork": {
+        front_default: string;
+      };
+    };
+  };
   abilities: {
     slot: number;
     is_hidden: boolean;
@@ -21,13 +28,6 @@ export interface PokemonResponse {
     slot: number;
     type: NamedAPIResource;
   }[];
-  sprites: {
-    other: {
-      "official-artwork": {
-        front_default: string;
-      };
-    };
-  };
 }
 
 export interface PokemonSpeciesResponse {
