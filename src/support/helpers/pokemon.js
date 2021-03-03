@@ -1,3 +1,5 @@
 export function getImageURLFromPokemon(pokemon) {
-  return pokemon.artwork;
+  // Step 2
+  // return the new property introduced in the pokemon object here
+  return "";
 }

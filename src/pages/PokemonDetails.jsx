@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchPokemonSpeciesByID } from "support/api/pokemonAPI";
-import { getImageURLFromPokemon } from "support/helpers/pokemon";
 import { useAsync } from "hooks/async";
 
 import styles from "./PokemonDetails.module.css";
@@ -28,10 +27,10 @@ function PokemonDetails() {
     const { data: pokemon } = state;
     return (
       <div className={styles.container}>
-        <div className={styles.name}>{pokemon.name}</div>
+        <div className={styles.name}>{pokemon.title}</div>
         <img
-          alt={pokemon.name}
-          src={getImageURLFromPokemon(pokemon)}
+          alt={pokemon.title}
+          src={pokemon.imageUrl}
           className={styles.artwork}
         />
         <ul className={styles.ul}>

@@ -18,6 +18,8 @@ export function parsePokemon(
     abilities: abilityResponses.map((ability) => ({
       name: getEnglishName(ability.names),
     })),
-    artwork: pokemonResponse.sprites.other["official-artwork"].front_default,
+    // Step 1
+    // Parse out image information in here
+    // imageURL: some property from one of the provided function arguments
   };
 }
