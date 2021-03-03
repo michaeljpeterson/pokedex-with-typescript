@@ -20,6 +20,6 @@ export function parsePokemon(
     })),
     // Step 1
     // Parse out image information in here
-    // imageURL: some property from one of the provided function arguments
+    imageURL: "", //some property from one of the provided function arguments
   };
 }
