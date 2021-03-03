@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchPokemonSpeciesByID } from "support/api/pokemonAPI";
-import { getImageURLFromPokemon } from "support/helpers/pokemon";
 import { useAsync } from "hooks/async";
 
 import type { Pokemon } from "interfaces/pokemon";
