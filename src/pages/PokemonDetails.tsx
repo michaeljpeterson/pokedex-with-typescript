@@ -1,13 +1,13 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 
-import { fetchPokemonSpeciesByID } from 'support/api/pokemonAPI';
-import { getImageURLFromPokemon } from 'support/helpers/pokemon';
-import { useAsync } from 'hooks/async';
+import { fetchPokemonSpeciesByID } from "support/api/pokemonAPI";
+import { getImageURLFromPokemon } from "support/helpers/pokemon";
+import { useAsync } from "hooks/async";
 
-import type { Pokemon } from 'interfaces/pokemon';
+import type { Pokemon } from "interfaces/pokemon";
 
-import styles from './PokemonDetails.module.css';
+import styles from "./PokemonDetails.module.css";
 
 function PokemonDetails() {
   const { id } = useParams<{ id: string }>();
@@ -18,15 +18,15 @@ function PokemonDetails() {
     run(fetchPokemonSpeciesByID(id));
   }, [id, run]);
 
-  if (state.status === 'loading' || state.status === 'idle') {
+  if (state.status === "loading" || state.status === "idle") {
     return <span>Loading...</span>;
   }
 
-  if (state.status === 'error') {
+  if (state.status === "error") {
     return <div>Error: {state.error}</div>;
   }
 
-  if (state.status === 'success') {
+  if (state.status === "success") {
     const { data: pokemon } = state;
     return (
       <div className={styles.container}>

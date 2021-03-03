@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { useAsync } from 'hooks/async';
-import { fetchPokemonList } from 'support/api/pokemonAPI';
-import PokemonCard from 'components/PokemonCard';
+import { useAsync } from "hooks/async";
+import { fetchPokemonList } from "support/api/pokemonAPI";
+import PokemonCard from "components/PokemonCard";
 
-import type { PaginableList, Pokemon } from 'interfaces/pokemon';
+import type { PaginableList, Pokemon } from "interfaces/pokemon";
 
-import styles from './Pokedex.module.css';
+import styles from "./Pokedex.module.css";
 
 function Pokedex() {
   const { state, run } = useAsync<PaginableList<Pokemon>>();
@@ -15,11 +15,11 @@ function Pokedex() {
     run(fetchPokemonList());
   }, [run]);
 
-  if (state.status === 'loading' || state.status === 'idle') {
+  if (state.status === "loading" || state.status === "idle") {
     return <span>Loading...</span>;
   }
 
-  if (state.status === 'error') {
+  if (state.status === "error") {
     return <div>Error: {state.error}</div>;
   }
 
