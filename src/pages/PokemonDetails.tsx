@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import { fetchPokemonSpeciesByID } from "support/api/pokemonAPI";
+import { getImageURLFromPokemon } from "support/helpers/pokemon";
 import { useAsync } from "hooks/async";
 
 import type { Pokemon } from "interfaces/pokemon";
@@ -30,6 +31,7 @@ function PokemonDetails() {
     return (
       <div className={styles.container}>
         <div className={styles.name}>{pokemon.name}</div>
+        <img alt={pokemon.name} src={getImageURLFromPokemon(pokemon)} className={styles.artwork} />
         <ul className={styles.ul}>
           Types:
           {pokemon.types.map((type, index) => {
