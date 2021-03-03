@@ -4,7 +4,6 @@ export interface Pokemon {
   name: string;
   types: Type[];
   abilities: Ability[];
-  artwork: string;
 }
 
 export interface Type {
