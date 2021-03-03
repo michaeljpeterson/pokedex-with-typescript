@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 
+import { getImageURLFromPokemon } from "support/helpers/pokemon";
 import type { Pokemon } from "interfaces/pokemon";
 
 import styles from "./PokemonCard.module.css";
@@ -9,10 +10,6 @@ type Props = {
   pokemon: Pokemon;
   className?: string;
 };
-
-function getImageURLFromPokemon(pokemon: Pokemon) {
-  return pokemon.artwork
-}
 
 function PokemonCard({ pokemon, className }: Props) {
   return (
